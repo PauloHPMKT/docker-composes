@@ -1,0 +1,15 @@
+db:
+  image: mongo:4.4
+  container_name: db
+  ports:
+    - 27017:27017
+  volumes:
+    - /mongodb/dbdata:/data/db
+    - /mongodb/configdb:/data/configdb
+    - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+  environment:
+    # this environment for root usename is optional if you are not using an user authentication
+    MONGO_INITDB_ROOT_USERNAME: root
+    # this environment for root password is optional if you are not using an user authentication
+    MONGO_INITDB_ROOT_PASSWORD: root
+    MONGO_INITDB_DATABASE: <my-databasename>
